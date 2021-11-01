@@ -40,6 +40,16 @@ class TestHashTable(unittest.TestCase):
             # act
             h.insert(self.invalid_key, self.value)
 
+    def test_insert_with_collision(self):
+        # arrange
+        h = HashTable()
+        # act
+        h.insert("P", "teste")
+        h.insert("F", "teste2")
+        # assert
+        self.assertEqual(h.get("P"), "teste")
+        self.assertEqual(h.get("F"), "teste2")
+
     def test_get(self):
         # arrange
         h = HashTable()
@@ -54,7 +64,7 @@ class TestHashTable(unittest.TestCase):
         h = HashTable()
         h.insert(self.key, self.value)
         # assert
-        with self.assertRaises(Exception):
+        with self.assertRaises(KeyError):
             # act
             h.get(self.invalid_key)
 
@@ -65,14 +75,15 @@ class TestHashTable(unittest.TestCase):
         # act
         h.delete(self.key)
         # assert
-        self.assertIsNone(h.get(self.key))
+        with self.assertRaises(KeyError):
+            h.get(self.key)
 
     def test_delete_with_invalid_key(self):
         # arrange
         h = HashTable()
         h.insert(self.key, self.value)
         # assert
-        with self.assertRaises(Exception):
+        with self.assertRaises(KeyError):
             # act
             h.delete(self.invalid_key)
 
