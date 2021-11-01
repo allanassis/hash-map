@@ -1,5 +1,5 @@
 import unittest
-from hash_table_v1 import HashTable
+from hash_table import HashTable
 
 
 class TestHashTableV1(unittest.TestCase):
