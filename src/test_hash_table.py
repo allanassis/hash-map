@@ -20,7 +20,17 @@ class TestHashTable(unittest.TestCase):
         # act
         h.insert(self.key, self.value)
         # assert
-        self.assertIn(self.value, h._list)
+        self.assertIn((self.key, self.value), h._list)
+
+    def test_insert_many(self):
+        # arrange
+        h = HashTable()
+        # act
+        for i in range(0, 22, 2): # generate more than ten items in hash map with no collision
+            h.insert(str(i),i)
+        # assert
+        for i in range(0, 22, 2):
+            self.assertEqual(i, h.get(str(i)))
 
     def test_insert_with_invalid_key(self):
         # arrange
