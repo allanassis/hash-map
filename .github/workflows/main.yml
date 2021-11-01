@@ -27,4 +27,4 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: python src/test_hash_map.py
+        run: python src/test_hash_table.py
